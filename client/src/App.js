@@ -8,15 +8,9 @@ export default function App() {
   return (
     <div>
       <Routes>
-        <Route exact path="/">
-          <Home />
-        </Route>
-        <Route exact path="/signup">
-          <Signup />
-        </Route>
-        <Route>
-          <About />
-        </Route>
+        <Route path="/" element={<Home />} />
+        <Route path="/signup" element={<Signup />} />
+        <Route path="/about" element={<About />} />
       </Routes>
     </div>
   );
