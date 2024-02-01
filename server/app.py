@@ -4,11 +4,15 @@ from Models import db,User
 from flask_migrate import Migrate
 from flask_bcrypt import bcrypt
 from flask_cors import CORS
+import os
 
 app = Flask(__name__)
 api = Api(app)
-CORS(app)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///combined.db'
+CORS(app, resources={r"/api/*": {"origins": "http://localhost:3000"}})
+abs_path = os.environ('database')
+print(f"Database URI: {abs_path}")
+
+app.config['SQLALCHEMY_DATABASE_URI'] = abs_path
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db.init_app(app)
 migrate = Migrate(app,db)
