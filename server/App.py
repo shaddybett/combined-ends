@@ -18,7 +18,10 @@ class User(Resource):
         else:
             return ('User not found')
     def post(self):
-            
+        newUser = User.query.filter_by(id=id).all()
+
+        if newUser not in User:
+            newUser.append(User)
 
 
 api.addResource(User,'/user')
