@@ -9,7 +9,7 @@ import os
 app = Flask(__name__)
 api = Api(app)
 CORS(app, resources={r"/api/*": {"origins": "http://localhost:3000"}})
-abs_path = os.environ('database')
+abs_path = os.environ.get('database')
 print(f"Database URI: {abs_path}")
 
 app.config['SQLALCHEMY_DATABASE_URI'] = abs_path
@@ -23,20 +23,13 @@ def hash_password(password):
     return hashed_password
 
 
-class UserResource(Resource):
+class RegisterResource(Resource):
     def post(self):
         data = request.get_json()
-        existing_User = User.query.filter_by(username = data['username']).first()
-        if existing_User:
-            if bcrypt.checkpw(data['password'].encode('utf-8'),existing_User.password):
-                return {'message':'Succesfully logged in'},200
-            else:
-                return {'message': 'Invalid credentials'},401   
-        else:
-            new_user = User(username = data['username'], email=data['email'],password=hash_password(data['password']))
-            db.session.add(new_user)
-            db.session.commit()
-            return {'message':'Registration successfull'},201            
+        existing_user = User.query.filter_by(username=data['username']).first() 
+        if existing_user:
+            return {'message': 'Username already exists'}, 409
+                  
 
 
 api.add_resource(UserResource,'/user')
