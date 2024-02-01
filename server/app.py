@@ -12,7 +12,8 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db.init_app(app)
 migrate = Migrate(app,db)
 
-salt = bcrypt.gensalt()
+def hash_password(password):
+    salt = bcrypt.gensalt()
 
 
 class UserResource(Resource):
