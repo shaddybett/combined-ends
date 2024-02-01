@@ -2,6 +2,7 @@ from flask import Flask,request
 from flask_restful import Api,Resource
 from Models import db,User
 from flask_migrate import Migrate
+from flask_bcrypt import bcrypt
 
 app = Flask(__name__)
 api = Api(app)
