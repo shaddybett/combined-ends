@@ -9,6 +9,7 @@ api.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///combined.db'
 api.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.init_app(app)
 
+@app.route('/user')
 class User(Resource):
     def get(self):
         username = User.query.filter_by(id=id).first()
@@ -16,6 +17,8 @@ class User(Resource):
             return username
         else:
             return ('User not found')
+    def post(self):
+            
 
 
 api.addResource(User,'/user')
