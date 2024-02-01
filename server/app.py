@@ -29,9 +29,23 @@ class RegisterResource(Resource):
         existing_user = User.query.filter_by(username=data['username']).first() 
         if existing_user:
             return {'message': 'Username already exists'}, 409
-                  
+        else:
+            new_user = User(username=data['username'], email=data['email'], password=hash_password(data['password']))
+            db.session.add(new_user)
+            db.session.commit()
+            return {'message': 'Registration succesful'},201
+
+class LoginResource(Resource):
+    def post(self):
+        data = request.json()
+        existing_user = User.query.filter_by(username=data['username']).first()  
+        if existing_user and bcrypt.checkpw(data['password'].encode('utf-8'), existing_user.password):
+            return {'message': 'Successfully logged in'},200
+        else:
+            return {'message': 'Invalid credentials'}, 401               
 
 
-api.add_resource(UserResource,'/user')
+api.add_resource(RegisterResource,'/register')
+api.add_resource(LoginResource, '/login')
 if __name__=='__main__':
     app.run(debug=True)
