@@ -20,7 +20,7 @@ class UserResource(Resource):
             else:
                 return {'message': 'Incorrect password'},401   
         else:
-            new_user = User(username = data['username'], email=data['email'],password=['password'])
+            new_user = User(username = data['username'], email=data['email'],password=data['password'])
             db.session.add(new_user)
             db.session.commit()
             return {'message':'Registration successfull'},200            
