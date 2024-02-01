@@ -9,16 +9,12 @@ app.config['SQLALCHEMY_DATABASE_URI']='sqlite:///combine.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db.init_app(app)
 
-class UserResource(Resource):
-    def seed_data(self):
-            with app.app_context():
-                new_user = User(username='Bett',email="B@gmail.com",password='west')
-
-                db.session.add(new_user)
-                db.session.commit()
-user_resource = UserResource()
-user_resource.seed_data()        
-
+with app.app_context():
+    user = {
+        "username":"Bett",
+        "email":"B@gmail.com",
+        "password":"1234" 
+    }
 
 
 
