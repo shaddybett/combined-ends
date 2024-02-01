@@ -5,8 +5,8 @@ from Models import db,User
 app = Flask(__name__)
 api = Api(app)
 
-api.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///combined.db'
-api.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///combined.db'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db.init_app(app)
 
 
@@ -26,6 +26,6 @@ class UserResource(Resource):
             return {'message':'Registration successfull'},200            
 
 
-api.addResource(UserResource,'/user')
+api.add_resource(UserResource,'/user')
 if __name__=='__main__':
     app.run(debug=True)
