@@ -148,6 +148,7 @@ export default function Home() {
         <h1>Welcome home</h1>
         <form>
             <input>type='text' placeholder='Enter your username' value={username} </input>
+            <input>type='text' placeholder='Enter your password' value={password} </input>
         </form>
     </div>
   )
