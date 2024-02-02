@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
-
-import { Link } from "react-router-dom";
+import { Link,useHistory } from "react-router-dom";
 
 export default function Signup() {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = usestate("");
+  const [error, setError] = useState("");
+  const history = useHistory()
 
   useEffect(() => {
     if (error) {
@@ -59,7 +59,7 @@ return (
         onChange={(e)=>setUsername (e.target.value) }
       />
       <input
-        type="text"
+        type="password"
         placeholder="Enter your password"
         value={password}
         onChange={(e)=> setPassword(e.target.value)}
