@@ -138,6 +138,7 @@ import { useState,useEffect } from 'react'
 
 const [username,setUsername] = useState('')
 const [password,setPassword] = useState('')
+
 export default function Home() {
     function handleSubmit(e){
         e.preventDefault()
@@ -146,7 +147,7 @@ export default function Home() {
     <div>
         <h1>Welcome home</h1>
         <form>
-            <input>type='text' placeholder='Enter your username'  </input>
+            <input>type='text' placeholder='Enter your username' value={username} </input>
         </form>
     </div>
   )
