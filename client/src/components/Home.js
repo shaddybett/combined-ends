@@ -1,11 +1,14 @@
+
+
 import React, { useState } from "react";
-import { Link, useHistory } from "react-router-dom";
-import About from "./About";
+import { Link,useNavigate } from "react-router-dom";
+// import About from "./About";
 
 export default function Home() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -30,32 +33,41 @@ export default function Home() {
       })
       .then((data) => {
         console.log(data);
-        history.push("/about");
+        navigate("/about");
       })
       .catch((error) => {
         console.error("Error:", error);
+        alert("An error occurred.Please try again later")
       })
       .finally(() => {
-        setLoading(False);
+        setLoading(false);
+        setUsername("")
         setPassword("");
+
       });
   }
+
   return (
     <div>
       <h1>Welcome home</h1>
       <form onSubmit={handleSubmit}>
-        <input>
-          type='text' placeholder='Enter your username' value={username}{" "}
-          onChange ={(e) => setUsername(e.target.value)}{" "}
-        </input>
-        <input>
-          type='text' placeholder='Enter your password' value={password}{" "}
-          onChange= {(e) => setPassword(e.target.value)}{" "}
-        </input>
+        <input
+          type="text"
+          placeholder="Enter your username"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+        />
+        <input
+          type="password"
+          placeholder="Enter your password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
         <button type="submit" disabled={loading}>
           Submit
         </button>
       </form>
+      <p>Don't have an account?<Link to={'/signup'}>Register</Link></p>
     </div>
   );
 }
