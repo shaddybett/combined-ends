@@ -133,23 +133,65 @@
 //   );
 // }
 
-import React from 'react'
-import { useState,useEffect } from 'react'
+import React, {useState} from "react";
+import { Link,useHistory } from "react-router-dom";
+import About from "./About";
 
-const [username,setUsername] = useState('')
-const [password,setPassword] = useState('')
 
 export default function Home() {
-    function handleSubmit(e){
-        e.preventDefault()
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [loading,setLoading] = useState(false);
+
+  function handleSubmit(e) {
+    e.preventDefault();
+
+    if (!username || !password){
+      console.error("Username and password required")
+      return;
     }
+    setLoading(true)
+    fetch("http://127.0.0.1:5000/login", {
+      method: "POST",
+      headers: {
+        "Content-type": "application/json",
+      },
+      body: JSON.stringify({ username, password }),
+    })
+    .then((response)=>{
+      if (!response.ok) {
+        throw new Error(`Error: ${response.status} - ${response.statusText}`);
+      }
+      return response.json();
+    })
+    .then((data)=>{
+      console.log(data);
+      history.push('/about');
+    })
+    .catch((error)=>{
+      console.error("Error:", error);
+    })
+    .finally(()=>{
+      setLoading(False);
+      setPassword("");
+    });
+  }
   return (
     <div>
-        <h1>Welcome home</h1>
-        <form>
-            <input>type='text' placeholder='Enter your username' value={username} </input>
-            <input>type='text' placeholder='Enter your password' value={password} </input>
-        </form>
+      <h1>Welcome home</h1>
+      <form onSubmit={handleSubmit}>
+        <input>
+          type='text' placeholder='Enter your username' value={username}{" "}
+          onChange ={(e) => setUsername(e.target.value)}{" "}
+        </input>
+        <input>
+          type='text' placeholder='Enter your password' value={password}{" "}
+          onChange= {(e) => setPassword(e.target.value)}{" "}
+        </input>
+        <button type="submit" disabled={loading}>
+          Submit
+        </button>
+      </form>
     </div>
-  )
+  );
 }
