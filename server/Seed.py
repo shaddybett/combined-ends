@@ -12,7 +12,7 @@ db.init_app(app)
 with app.app_context():
     user = {
         "username":"Blue",
-        "email":"b@gmail.com",
+        "email":"@gmail.com",
         "password":"5403" 
     }
     new_user = User(**user)

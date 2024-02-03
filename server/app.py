@@ -1,11 +1,10 @@
-from flask import Flask,request
+from flask import Flask,request,jsonify
 from flask_restful import Api,Resource
-from Models import db,User
 from flask_migrate import Migrate
 from flask_bcrypt import Bcrypt
 from flask_cors import CORS
 from dotenv import load_dotenv
-from flask import jsonify
+from Models import db,User
 import os
 
 load_dotenv()
@@ -48,7 +47,7 @@ class LoginResource(Resource):
         try:    
             data = request.json()
             existing_user = User.query.filter_by(username=data['username']).first()  
-            if existing_user and bcrypt.checkpw(data['password'].encode('utf-8'), existing_user.password):
+            if existing_user and bcrypt.check_password_hash(existing_user.password, data['password']):
                 return {'message': 'Successfully logged in'},200
             else:
                 return {'message': 'Invalid credentials'}, 401       
