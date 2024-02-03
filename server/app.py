@@ -10,4 +10,9 @@ db.init_app(app)
 
 @app.route('/')
 def get(self):
-    return('Welcome')
+    return('Welcome Home')
+
+@app.route('/login')
+def post(self):
+    users = User.query.all()
+    
