@@ -1,7 +1,8 @@
 from flask import Flask
-from Models import db,User
+from models import db,User
 # from flask_restful import Resource
 from app import app
+
 
 app = Flask(__name__)
 
