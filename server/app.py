@@ -58,14 +58,14 @@ class LoginResource(Resource):
 class UserResource(Resource):
     def get (self):
         try:
-        #     users = User.query.all()
-        #     if users:
-        #         return users, 200
-        #     else:
-        #         return {'message':'Users not found'}, 404
-        # except Exception as e:
-        #     app.logger.error(f"Error fetching users: {str(e)}")
-        #     return {'message':'Internal Server Error'}, 500    
+            users = User.query.all()
+            if users:
+                return users, 200
+            else:
+                return {'message':'Users not found'}, 404
+        except Exception as e:
+            app.logger.error(f"Error fetching users: {str(e)}")
+            return {'message':'Internal Server Error'}, 500    
         
 
 api.add_resource(RegisterResource,'/register')
