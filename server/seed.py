@@ -1,7 +1,8 @@
 from flask import Flask
-from Models import db,User
+from models import db,User
 # from flask_restful import Resource
-# from App import App
+from app import app
+
 
 app = Flask(__name__)
 
@@ -11,8 +12,8 @@ db.init_app(app)
 
 with app.app_context():
     user = {
-        "username":"Sha",
-        "email":"sha@gmail.com",
+        "username":"Blue",
+        "email":"@gmail.com",
         "password":"5403" 
     }
     new_user = User(**user)
