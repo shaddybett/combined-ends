@@ -1,7 +1,5 @@
-
-
 import React, { useState } from "react";
-import { Link,useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 // import About from "./About";
 
 export default function Home() {
@@ -37,13 +35,12 @@ export default function Home() {
       })
       .catch((error) => {
         console.error("Error:", error);
-        alert("An error occurred.Please try again later")
+        alert("An error occurred.Please try again later");
       })
       .finally(() => {
         setLoading(false);
-        setUsername("")
+        setUsername("");
         setPassword("");
-
       });
   }
 
@@ -67,7 +64,9 @@ export default function Home() {
           Submit
         </button>
       </form>
-      <p>Don't have an account?<Link to={'/signup'}>Register</Link></p>
+      <p>
+        Don't have an account?<Link to={"/signup"}>Register</Link>
+      </p>
     </div>
   );
 }
