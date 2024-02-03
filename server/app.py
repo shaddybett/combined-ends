@@ -61,7 +61,8 @@ class UserResource(Resource):
         try:
             users = User.query.all()
             if users:
-                return users, 200
+                serialized_users = [user.serialize() for user in users]
+                return jsonify(serialized_users), 200
             else:
                 return {'message':'Users not found'}, 404
         except Exception as e:
