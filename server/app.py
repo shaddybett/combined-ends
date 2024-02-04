@@ -1,7 +1,7 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify,make_response
 from flask_migrate import Migrate
 from flask_bcrypt import Bcrypt
-from flask_cors import CORS
+from flask_cors import CORS, cross_origin
 from dotenv import load_dotenv
 from models import db, User  # Assuming 'Models' is a typo and should be 'models'
 import os
@@ -10,7 +10,7 @@ load_dotenv()
 
 app = Flask(__name__)
 app.secret_key = os.environ.get('SECRET_KEY')
-CORS(app, resources={r"/api/*": {"origins": "http://localhost:3000"}})
+CORS(app, resources={r"/api/*": {"origins": "*"}})
 
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL') or 'sqlite:///combined.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
@@ -41,8 +41,18 @@ def register():
         return {'message': 'Internal Server Error'}, 500
 
 
-@app.route('/login', methods=['POST'])
+from flask_cors import cross_origin
+
+@app.route('/login', methods=['POST', 'OPTIONS'])
+@cross_origin()
 def login():
+    if request.method == 'OPTIONS':
+        # Respond to preflight request
+        response = make_response()
+        response.headers.add('Access-Control-Allow-Methods', 'POST')
+        response.headers.add('Access-Control-Allow-Headers', 'Content-Type')
+        return response
+
     try:
         data = request.get_json()
         existing_user = User.query.filter_by(username=data['username']).first()
