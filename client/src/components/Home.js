@@ -31,7 +31,12 @@ export default function Home() {
       })
       .then((data) => {
         console.log(data);
-        navigate("/about");
+        if (data.error) {
+          console.error("Error:", data.error);
+          alert("An error occurred: " + data.error);
+        } else {
+          navigate("/about");
+        }
       })
       .catch((error) => {
         console.error("Error:", error);
