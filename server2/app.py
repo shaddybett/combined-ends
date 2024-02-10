@@ -4,7 +4,8 @@ app = Flask(__name__)
 
 @app.route('/home')
 def home():
-    return ({'members':{'member1','member2','members3'}})
+    members = {'member1','member2','member3'}
+    return jsonify ({members: list(members)})
 
 if __name__=='__main__':
     app.run(debug=True)
