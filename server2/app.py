@@ -35,9 +35,18 @@
 
 
 
-from flask import Flask
+from flask import Flask,request,jsonify
 from flask_restful import Api
 from models import Member,db
 
 app = Flask(__name__)
 api = Api(app)
+
+app.config['SQLALCHEMY_DATABASE_URI']='sqlite://member.db'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS']=False
+db.init_app(app)
+
+@app.route('/home',methods=['POST'])
+def signup(self):
+    data = request
+    
