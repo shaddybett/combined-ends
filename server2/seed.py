@@ -1,12 +1,9 @@
-from models import Member,db
-from flask import Flask
+from app import app,db
+from models import Member
 
-app = Flask(__name__)
-
-with app.app_context:
-    class Member(db.Model):
-        Member = {
-            'username':'bett',
-            'email':'bett@gmail.com',
-            'password':'12345'
-        }
+with app.app_context():
+    members = [
+        Member(username='bett',email='bett@gmail.com',password='12345')
+    ]
+    db.session.add_all(members)
+    db.session.commit()
