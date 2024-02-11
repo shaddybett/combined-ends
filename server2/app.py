@@ -49,4 +49,18 @@ db.init_app(app)
 @app.route('/home',methods=['POST'])
 def signup(self):
     data = request
-    
+    email = data.get(Member.email)
+    existingUser = Member.query.filter_by(email=email).first()
+    if existingUser:
+        return jsonify ({'error':'User already exists'}),404
+    else:
+        newUser = {
+            'username':'username',
+            'email':'email',
+            'password':'password'
+        } 
+        db.session.add(newUser)
+        db.sessio.commit()
+
+if __name__=='__main__':
+    app.run(debug=True)        
