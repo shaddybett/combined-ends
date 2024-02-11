@@ -13,21 +13,21 @@
 
 
 
-# from flask import Flask
-# # from flask_cors import CORS
+from flask import Flask
+from flask_cors import CORS
 
-# app = Flask(__name__)
-# # CORS(app)
-
-
-# @app.route('/home')
-# def members():
-#     return 
+app = Flask(__name__)
+CORS(app)
 
 
-# if __name__=='__main__':
-#     app.run(debug=True)
+@app.route('/home')
+def members():
+    members=['alex','bett','norm']
+    return {'members': members}
 
 
-# members = ['swat','kray dom','smithsonian','kai']
-# print(members)
+if __name__=='__main__':
+    app.run(debug=True)
+
+
+
