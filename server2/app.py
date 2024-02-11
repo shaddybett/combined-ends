@@ -10,10 +10,18 @@ app.config['SQLALCHEMY_DATABASE_URI'] ='sqlite:///member.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db.init_app(app)
 
-
-@app.route('/signup',method='POST')
-def signup():
+@app.route('/members' methods = ['POST'])
+def signup ():
     data = request
+    email = data.get(Member.email)
+    existingUser = Member.query.filter_by(email=email).first()
+    if existingUser:
+        return jsonify({'error':'email already exists'})
+    else:
+        newUser = 
+
+  
+    
     
 
 if __name__=='__main__':
