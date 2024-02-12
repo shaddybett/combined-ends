@@ -63,5 +63,9 @@ import React,{useState} from "react";
  
 const handleSignup = ()=> {
     fetch('http://localhost:5000/signup')
-    .then()
+    .then((response)=> {
+        if (!response.ok){
+            
+        }
+    })
 }
