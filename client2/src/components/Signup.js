@@ -9,7 +9,7 @@ export default function Signup() {
     fetch("http://localhost:5000/signup", {
       method: "POST",
       headers: {
-        Content_Type: "application/json",
+        "Content-Type": "application/json",
       },
       body: JSON.stringify({
         username: user,
