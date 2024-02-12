@@ -19,7 +19,7 @@ export default function Signup() {
            
         })
         .then ((data)=>setData(data)) 
-        .catch((error)=>console.error('Error signing in')),404
+        .catch((error)=>console.error('Error signing in:',error)),404
     },[])
   return (
     <div>
