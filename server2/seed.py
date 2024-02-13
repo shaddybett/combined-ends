@@ -23,6 +23,16 @@ with app.app_context():
         db.session.add(members)
         db.session.commit()
         print('seeding successful'),200
+        
     except Exception as e:
         db.session.rollback()
         print(f"Error seeding data:{str(e)}")
+
+
+
+
+from app import app,db
+from models import Member
+
+with app.app_context():
+    
