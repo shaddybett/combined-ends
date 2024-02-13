@@ -1,30 +1,13 @@
-import React,{useState,useEffect} from 'react'
+import React from 'react'
+import {Link} from 'react-router-dom'
 
 function Home() {
-    const [data,setData] = useState([])
-    useEffect(()=>{
-        fetch('http://localhost:5000/home')
-        .then((response)=>{
-            if (!response.ok) {
-                throw new Error('Network response was not okay');
-            }
-            else {
-                return response.json();
-            }
-        })
-        .then ((data)=> setData(data.members))
-        .catch ((error)=> {console.error('error fetching data:', error)})
-    },[])
   return (
     <div>
-        {data ? (
-            <ul>
-                {data.map((member,index)=>(
-                    <li key={index}>{member}</li>
-                ))}
-            </ul>
-        ): (<p>Loading ...</p>)}
+        <h1>Welcome to my app</h1>
+        <Link to='/signup'>Register</Link>
     </div>
   )
-                }
+}
+
 export default Home
