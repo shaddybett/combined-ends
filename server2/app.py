@@ -21,7 +21,7 @@ def signup():
     email = data.get('email')
     existing_member = Member.query.filter_by(email=email).first()
     if existing_member:
-        return jsonify ({'error':'Email already exists'}),400
+        return jsonify({'error':'Email already exists'})
     else:
         new_member = Member(
             username = data.get('username'),
