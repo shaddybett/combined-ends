@@ -6,7 +6,7 @@ function Login() {
     const [data,setData] = useState('')
 
     useEffect(()=>{
-        fetch('',
+        fetch('http://localhost:5000/login',
         methods = 'GET',
         headers = Application/json)
     },[])
