@@ -34,8 +34,8 @@ def signup():
 @app.route('/login',methods=['GET'])
 def login():
     data = request.get_json()
-    email = data.get('username')
-    existing = Member.query.filter_by(email=email).first()
+    username = data.get('username')
+    existing = Member.query.filter_by(username=username).first()
     if existing:
         return jsonify ({'message':'Login successful'}),200
     else:
