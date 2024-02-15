@@ -3,7 +3,8 @@ import { useState,useEffect } from 'react'
 
 
 function Login() {
-    const [data,setData] = useState('')
+    const [user,setUser] = useState('')
+    const [password,setPassword] = useState('')
 
     useEffect(()=>{
         fetch('http://localhost:5000/login',
@@ -14,7 +15,8 @@ function Login() {
   return (
     <div>
         <h1>Login</h1>
-        <input />
+        <input type='text' placeholder='Enter your username' value={user} onChange={setUser} />
+        <input type='password' placeholder='Enter your password' value={password} onChange={setPassword} />
     </div>
   )
 }
