@@ -31,6 +31,15 @@ def signup():
         db.session.add(new_member)
         db.session.commit()
         return jsonify({'message':'Successfully signed in'}),200
+@app.route('/login',methods=['GET'])
+def login():
+    data = request.get_json()
+    email = data.get('email')
+    existing = Member.query.filter_by(email=email).first()
+    if existing:
+        return jsonify ({'message':'Login successful'}),200
+    else:
+        return jsonify ({'error':'User does not exist'}),400    
 
 if __name__=='__main__':
     app.run(debug=True)        
