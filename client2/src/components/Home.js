@@ -6,6 +6,7 @@ function Home() {
     <div>
       <h1>Welcome to my app</h1>
       <Link to="/signup">Sign Up</Link>
+      <br/>
       <Link to="/login">Login</Link>
     </div>
   );
