@@ -5,7 +5,7 @@ function Home() {
   return (
     <div>
         <h1>Welcome to my app</h1>
-        <Link to='/signup'>Register</Link>
+        <Link to='/signup'>Sign Up</Link>
     </div>
   )
 }
