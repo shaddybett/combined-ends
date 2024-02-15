@@ -11,7 +11,9 @@ function Login() {
         methods = 'GET',
         headers = Application/json)
     },[])
-    
+    function handleSubmit(e){
+        e = e.preventDefault(e)
+    }
   return (
     <div>
         <h1>Login</h1>
