@@ -20,6 +20,7 @@ function Login() {
         <form onSubmit={handleSubmit}>
         <input type='text' placeholder='Enter your username' value={user} onChange={setUser} />
         <input type='password' placeholder='Enter your password' value={password} onChange={setPassword} />
+        <button onClick={handleSubmit} >Submit</button>
         </form>
     </div>
   )
