@@ -6,7 +6,7 @@ export default function Signup() {
   const [pass, setPass] = useState("");
 
   const handleSignup = () => {
-    fetch("http://localhost:5000/signup", {
+    fetch("http://localhost:4000/signup", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -55,7 +55,3 @@ export default function Signup() {
     </div>
   );
 }
-
-
-
-
